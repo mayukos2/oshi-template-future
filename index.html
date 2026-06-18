@@ -83,8 +83,8 @@
 
     .fv-hero {
       max-width: 760px;
-      margin: 0 auto 18px;
-      padding: 0 18px;
+      margin: 12px 0 14px;
+      padding: 0;
     }
 
     .fv-hero img {
@@ -760,16 +760,15 @@
 <body>
   <header class="app-header">
     <div>
-      <p class="eyebrow">OSHIKATSU TEMPLATE MAKER</p>
+      <p class="eyebrow">OSHIKATSU STORY MAKER</p>
+      <section class="fv-hero" aria-label="推し活ストーリーメーカーの紹介画像">
+        <img src="assets/fv.jpg" alt="推し活ストーリーメーカー" />
+      </section>
       <h1>テンプレを選んで<br />写真を入れる</h1>
       <p class="sub">写真を入れて、上下の5色を変えられる改善版です。</p>
     </div>
     <div class="badge">改善ver v1</div>
   </header>
-
-  <section class="fv-hero" aria-label="推し活ストーリーメーカーの紹介画像">
-    <img src="assets/fv.jpg" alt="推し活ストーリーメーカー" />
-  </section>
 
   <nav class="progress" aria-label="作成ステップ">
     <button class="progress-step" type="button" data-go="templates"><span>1</span>テンプレ</button>
@@ -896,7 +895,7 @@
         count: 1,
         src: 'assets/templates/template-free.jpg',
         slots: [
-          { type: 'roundRect', x: 136, y: 153, w: 448, h: 597, radius: 0 }
+          { type: 'roundRect', x: 136, y: 153, w: 448, h: 597, radius: 0, bleed: 4, fill: '#fff' }
         ]
       }
     ];
@@ -1210,14 +1209,15 @@
     }
 
     function drawPaletteBars() {
-      const topHeight = 48;
-      const bottomY = 1237;
-      const bottomHeight = 43;
-      const segmentWidth = canvas.width / 10;
-      for (let i = 0; i < 10; i += 1) {
+      const segments = [0, 73, 148, 222, 292, 365, 437, 512, 586, 656, 720];
+      const topY = 0;
+      const topHeight = 50;
+      const bottomY = 1235;
+      const bottomHeight = 45;
+      for (let i = 0; i < segments.length - 1; i += 1) {
         ctx.fillStyle = state.palette[i % state.palette.length];
-        ctx.fillRect(i * segmentWidth, 0, segmentWidth + 1, topHeight);
-        ctx.fillRect(i * segmentWidth, bottomY, segmentWidth + 1, bottomHeight);
+        ctx.fillRect(segments[i], topY, segments[i + 1] - segments[i] + 1, topHeight);
+        ctx.fillRect(segments[i], bottomY, segments[i + 1] - segments[i] + 1, bottomHeight);
       }
     }
 
@@ -1289,10 +1289,19 @@
         drawCover(photo.image, slot.r * 2, slot.r * 2, photo);
       }
       if (slot.type === 'roundRect') {
-        ctx.translate(slot.x + slot.w / 2, slot.y + slot.h / 2);
-        roundedRectPath(ctx, -slot.w / 2, -slot.h / 2, slot.w, slot.h, slot.radius || 0);
+        const bleed = slot.bleed || 0;
+        const slotX = slot.x - bleed;
+        const slotY = slot.y - bleed;
+        const slotW = slot.w + bleed * 2;
+        const slotH = slot.h + bleed * 2;
+        ctx.translate(slotX + slotW / 2, slotY + slotH / 2);
+        roundedRectPath(ctx, -slotW / 2, -slotH / 2, slotW, slotH, slot.radius || 0);
         ctx.clip();
-        drawCover(photo.image, slot.w, slot.h, photo);
+        if (slot.fill) {
+          ctx.fillStyle = slot.fill;
+          ctx.fillRect(-slotW / 2, -slotH / 2, slotW, slotH);
+        }
+        drawCover(photo.image, slotW, slotH, photo);
       }
       if (slot.type === 'poly') {
         const points = expandPolygon(slot.points, slot.bleed || 0);
