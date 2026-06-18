@@ -47,6 +47,11 @@
       gap: 16px;
     }
 
+    body[data-stage="input"] .app-header,
+    body[data-stage="preview"] .app-header {
+      display: none;
+    }
+
     .eyebrow {
       margin: 0 0 7px;
       color: var(--accent-dark);
@@ -1033,6 +1038,7 @@
         updateSummary();
         render();
       }
+      document.body.dataset.stage = stage;
       if (shouldScroll) scrollToStage(stage);
     }
 
