@@ -1,0 +1,40 @@
+[
+  {
+    "file": "assets/fv.jpg",
+    "hasMetadata": true,
+    "risk": "low",
+    "canPublish": true,
+    "requiresHumanReview": false,
+    "reasons": [
+      "metadata present",
+      "no high-risk flags",
+      "ai-generated without real names or existing works"
+    ],
+    "recommendation": "publish ok"
+  },
+  {
+    "file": "assets/templates/template-free.jpg",
+    "hasMetadata": true,
+    "risk": "low",
+    "canPublish": true,
+    "requiresHumanReview": false,
+    "reasons": [
+      "metadata present",
+      "no high-risk flags",
+      "original / owned source",
+      "color customizable"
+    ],
+    "recommendation": "publish ok"
+  },
+  {
+    "file": "index.html public text",
+    "hasMetadata": true,
+    "risk": "low",
+    "canPublish": true,
+    "requiresHumanReview": false,
+    "reasons": [
+      "no risky wording detected in public page text"
+    ],
+    "recommendation": "publish ok"
+  }
+]

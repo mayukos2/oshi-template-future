@@ -1,0 +1,40 @@
+{
+  "items": [
+    {
+      "id": "future-fv",
+      "file": "assets/fv.jpg",
+      "title": "推し活ストーリーメーカーFV",
+      "type": "fv",
+      "sourceType": "ai-generated",
+      "createdBy": "mayuko",
+      "license": "original",
+      "usesRealPerson": false,
+      "usesOfficialLogo": false,
+      "usesOfficialScreenshot": false,
+      "usesExistingCharacter": false,
+      "usesGroupNameOrTourName": false,
+      "inspiredByOfficialMerch": false,
+      "allowsColorChange": false,
+      "sampleUsesFictionalContent": true,
+      "notes": "架空の推し活アプリ紹介ビジュアル。実在人物名・公式名・既存キャラクター名は使っていない。特定の公式グッズ再現ではない。"
+    },
+    {
+      "id": "future-color-custom-memory",
+      "file": "assets/templates/template-free.jpg",
+      "title": "色変更できる思い出テンプレ",
+      "type": "template",
+      "sourceType": "original",
+      "createdBy": "mayuko",
+      "license": "original",
+      "usesRealPerson": false,
+      "usesOfficialLogo": false,
+      "usesOfficialScreenshot": false,
+      "usesExistingCharacter": false,
+      "usesGroupNameOrTourName": false,
+      "inspiredByOfficialMerch": false,
+      "allowsColorChange": true,
+      "sampleUsesFictionalContent": true,
+      "notes": "オリジナルの推し活記録テンプレ。上下の色を変更可能。特定グループ専用ではない。特定の公式グッズ再現ではない。"
+    }
+  ]
+}
